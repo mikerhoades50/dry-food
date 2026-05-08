@@ -204,7 +204,7 @@ async function loadLastBatch() {
 
     // Oil change logic
     const oilChange = b.oil_change || 0;
-    const batchesLeft = 10 - oilChange;
+    const batchesLeft = 25 - oilChange;
 
     batchesUntilOilEl.textContent = batchesLeft;
     oilCard.classList.remove('oil-normal', 'oil-warning', 'oil-critical');
