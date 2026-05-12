@@ -7,7 +7,7 @@ import './App.css';
 import { useTheme } from './hooks/useTheme';
 
 function App() {
-  const { toggleTheme } = useTheme();     // ← Get toggle function
+  const { theme, toggleTheme } = useTheme();   // ← Fixed: includes theme
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -47,9 +47,12 @@ function App() {
           </div>
 
           <div className="navbar-right">
-            {/* Fixed Dark Mode Toggle */}
-            <button onClick={toggleTheme} className="theme-toggle-btn">
-              🌙
+            {/* Dark Mode Toggle with Icon Change */}
+            <button 
+              onClick={toggleTheme} 
+              className="theme-toggle-btn"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
             </button>
 
             {user && (
