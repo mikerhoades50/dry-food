@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function BuyMeABeer() {
   const [amount, setAmount] = useState(5);
 
-  const quickAmounts = [5, 8, 10, 20, 25, 50];
+  const quickAmounts = [5, 8, 10, 20, 25, 50, 500000];
 
   const paypalUsername = "mikerhoades50";   
 
