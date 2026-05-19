@@ -80,6 +80,23 @@ async function fetchData(searchTerm = '') {
   }
 }
 
+// Update total quantity in header
+function updateQuantityTotal() {
+  const total = currentData.reduce((sum, row) => {
+    return sum + (parseInt(row.Qty) || 0);
+  }, 0);
+
+  const qtyHeader = document.querySelector('th[data-col="Qty"]');
+  if (qtyHeader) {
+    qtyHeader.innerHTML = `
+      QTY 
+      <span style="font-size:0.95rem; font-weight:600; color:inherit; margin-left:6px;">
+        (${total.toLocaleString()})
+      </span>
+    `;
+  }
+}
+
 // ====================== CSV DOWNLOAD ======================
 function downloadCSV() {
   if (currentData.length === 0) {
@@ -207,6 +224,8 @@ allColumns = Object.keys(currentData[0]).filter(col =>
 
   attachActionListeners();
   attachSortListeners();
+
+  updateQuantityTotal();
 }
 
 function attachSortListeners() {

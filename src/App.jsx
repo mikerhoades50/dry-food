@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import Resources from './pages/Resources';
+import BuyMeABeer from './pages/BuyMeABeer';
 import { supabase } from './auth';
 import './App.css';
 import { useTheme } from './hooks/useTheme';
 
 function App() {
-  const { theme, toggleTheme } = useTheme();   // ← Fixed: includes theme
+  const { theme, toggleTheme } = useTheme();   
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -44,6 +45,9 @@ function App() {
             <a href="/Calc.html">Calculator</a>
             <a href="/inv.html">Inventory</a>
             <Link to="/resources">Resources</Link>
+            <Link to="/buymeabeer" style={{ color: '#f59e0b', fontWeight: '700' }}>
+    🍺 Buy Me a Beer
+  </Link>
           </div>
 
           <div className="navbar-right">
@@ -80,6 +84,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/buymeabeer" element={<BuyMeABeer />} />
         </Routes>
       </div>
     </Router>

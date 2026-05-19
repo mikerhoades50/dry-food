@@ -20,6 +20,7 @@ const sizeConfig = {
 };
 
 let currentGroupId = null;
+let hasUnsavedChanges = false;
 
 // ====================== AUTH ======================
 async function initAuth() {
@@ -78,8 +79,10 @@ function createRows(count, prevA = [], prevB = [], prevC = []) {
 
 function attachInputListeners() {
   const table = document.getElementById('dataTable');
-  table.addEventListener('input', updateTotals);
-
+  table.addEventListener('input', () => {
+    markAsUnsaved();
+    updateTotals();
+  });
   const colA = Array.from(table.querySelectorAll('.col-a'));
   const colB = Array.from(table.querySelectorAll('.col-b'));
   const colC = Array.from(table.querySelectorAll('.col-c'));
@@ -141,7 +144,23 @@ function updateTotals() {
   document.getElementById('waterPerBag').textContent = `Water per Bag: ${waterPerBag.toFixed(2)} g`;
   document.getElementById('waterOz').textContent = `Water in oz: ${(waterPerBag * 0.03527396).toFixed(2)} oz`;
 }
+function markAsUnsaved() {
+  hasUnsavedChanges = true;
+  const saveBtn = document.getElementById('saveToDbBtn');
+  if (saveBtn) {
+    saveBtn.style.background = '#f59e0b'; // Orange warning color
+    saveBtn.textContent = '💾 Save Changes *';
+  }
+}
 
+function markAsSaved() {
+  hasUnsavedChanges = false;
+  const saveBtn = document.getElementById('saveToDbBtn');
+  if (saveBtn) {
+    saveBtn.style.background = ''; // Reset to original color
+    saveBtn.textContent = '💾 Save / Update Batch';
+  }
+}
 // ====================== DATABASE ======================
 async function loadLastBatch() {
   if (!currentGroupId) return;
@@ -282,6 +301,7 @@ async function saveBatchToDatabase() {
     if (error) throw error;
 
     alert('✅ Batch saved successfully!');
+    markAsSaved();
     startNewBatch();
     loadLastBatch();
   } catch (err) {
@@ -424,6 +444,15 @@ machineSizeSelect.addEventListener('change', () => {
   }
 
   if (currentGroupId) loadLastBatch();
+});
+
+// Warn user before leaving with unsaved changes
+window.addEventListener('beforeunload', (e) => {
+  if (hasUnsavedChanges) {
+    e.preventDefault();
+    e.returnValue = ''; // Required for modern browsers
+    return 'You have unsaved changes. Are you sure you want to leave?';
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

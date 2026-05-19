@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="container" style={{ textAlign: 'center', marginTop: '120px' }}>
-      <h1>Batch Processing System</h1>
+      <h1>Freeze Dried Batch Processing System</h1>
       <p style={{ margin: '40px 0', fontSize: '1.25rem' }}>Choose your tool:</p>
       
       <div style={{ display: 'flex', gap: '30px', justifyContent: 'center', flexWrap: 'wrap' }}>
