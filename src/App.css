@@ -377,3 +377,51 @@ body {
   box-shadow: 0 6px 12px rgba(59, 130, 246, 0.35);
   background: linear-gradient(135deg, #2563eb, #1e40af);
 }
+
+/* Hamburger Menu  */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.hamburger:hover {
+  background: var(--gray-200);
+}
+
+.dark .hamburger {
+  color: var(--text-primary);
+}
+
+.dark .hamburger:hover {
+  background: var(--gray-700);
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    z-index: 999;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

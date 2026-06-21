@@ -220,7 +220,7 @@ export default function Resources() {
   return (
     <div className="resources-container">
       <h1>Resources</h1>
-      <p className="subtitle">Supplies, Equipment, and Helpful Content for Batch Processing</p>
+      <p className="subtitle">Supplies, Equipment, and Helpful Content for Freeze Drying</p>
 
       {/* Supplies */}
       <div className="section-header">
