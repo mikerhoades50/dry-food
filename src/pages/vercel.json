@@ -1,7 +1,16 @@
 {
   "rewrites": [
-    { "source": "/resources", "destination": "/index.html" },
-    { "source": "/buymeabeer", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/resources",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/buymeabeer",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
