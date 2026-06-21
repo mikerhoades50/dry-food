@@ -10,37 +10,31 @@
 
 <body>
   <!-- Navigation Bar -->
-<div class="nav-links">
-  <a href="/">Home</a>
-  <a href="Calc.html">Calculator</a>
-  <a href="inv.html">Inventory</a>
-  <a href="/resources">Resources</a>
-  <a href="/buymeabeer">🍺 Buy Me a Beer</a>
-</div>
+<nav class="navbar">
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <a href="Calc.html">Calculator</a>
+    <a href="inv.html">Inventory</a>
+    <a href="/resources">Resources</a>
+    <a href="/buymeabeer">🍺 Buy Me a Beer</a>
+  </div>
 
-    <div class="navbar-right">
-      <!-- Dark Mode Toggle -->
-      <button id="themeToggle" class="theme-toggle-btn">
-        🌙
-      </button>
+  <div class="navbar-right">
+    <button id="hamburger" class="hamburger">☰</button>
+    <button id="themeToggle" class="theme-toggle-btn">🌙</button>
 
-      <!-- User Profile -->
-      <div class="user-profile" id="userProfile">
-        <div class="user-avatar-container">
-          <img id="userAvatar" class="user-avatar" alt="User avatar" width="38" height="38"
-            src="https://ui-avatars.com/api/?name=User&background=3b82f6&color=fff&size=128">
-          <div class="user-info">
-            <span id="userName" class="user-name">Loading...</span>
-          </div>
+    <div class="user-profile" id="userProfile">
+      <div class="user-avatar-container">
+        <img id="userAvatar" class="user-avatar" alt="User avatar" width="38" height="38"
+          src="https://ui-avatars.com/api/?name=User&background=3b82f6&color=fff&size=128">
+        <div class="user-info">
+          <span id="userName" class="user-name">Loading...</span>
         </div>
-
-        <button id="logoutBtn" class="logout-btn">
-          Logout
-        </button>
       </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
-  </nav>
-
+  </div>
+</nav>
 
   <div class="container">
     <div class="header">
@@ -135,6 +129,14 @@
 
   <script src="theme.js"></script>
   <script type="module" src="calc.js"></script>
+  <script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
 </body>
 
 </html>
